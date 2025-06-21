@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require 'db.php';
 
 // ambil data yang ada di database
 $result = mysqli_query($db, "SELECT * FROM tb_siswa");
@@ -41,9 +41,9 @@ while ($row = mysqli_fetch_all($result)) {
                 <td><?= $siswi['kelas'] ?></td>
                 <td><?= $siswi['nomor'] ?></td>
                 <td>
-                    <a href="hapus.php?id=<?= $siswi['id']?>">hapus</a>
+                    <a href="hapus.php?id=<?= $siswi['id']?>" onclick="return confirm('yakin hapus?')">hapus</a>
                     |
-                    <a href="edit.php"></a>
+                    <a href="edit.php?id=<?= $siswi['id']?>">edit</a>
                 </td>
             </tr>
         <?php endforeach; ?>
