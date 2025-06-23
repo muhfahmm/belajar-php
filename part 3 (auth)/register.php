@@ -1,32 +1,3 @@
-<?php
-require 'db.php';
-
-if (isset($_POST['register'])) {
-    $username = htmlspecialchars(strtolower($_POST['username']));
-    $password1 = htmlspecialchars(strtolower($_POST['password1']));
-    $password2 = htmlspecialchars(strtolower($_POST['password2']));
-
-    if ($password1 !== $password2) {
-        echo 'password tidak sama';
-    } elseif ($username || $password1 || $password2 == "") {
-        echo "input kosong harus diisi";
-    } else {
-        $check = mysqli_query($db, "SELECT * FROM tb_admin WHERE nama = '$username' ");
-        if (mysqli_num_rows($check) > 0) {
-            echo "username sudah digunakan";
-        } else {
-            $hash_pass = password_hash($password1, PASSWORD_BCRYPT);
-
-            mysqli_query($db, "INSERT INTO tb_admin
-            (nama, password)
-            VALUES
-            ('$username', '$hash_pass')");
-            header("location: login.php");
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,10 +68,40 @@ if (isset($_POST['register'])) {
                         register
                     </button>
                 </div>
+
+                <?php
+                require 'db.php';
+
+                if (isset($_POST['register'])) {
+                    $username = htmlspecialchars(strtolower($_POST['username']));
+                    $password1 = htmlspecialchars(strtolower($_POST['password1']));
+                    $password2 = htmlspecialchars(strtolower($_POST['password2']));
+
+                    if ($password1 !== $password2) {
+                        echo '<div style="background-color: red; padding: 10px; border-radius: 8px;color: white; margin-top: 10px;">password tidak sama</div>';
+                    } elseif ($username || $password1 || $password2 == "") {
+                        echo '<div style="background-color: red; padding: 10px; border-radius: 8px;color: white; margin-top: 10px;">input kosong wajib di isi</div>';
+                    } else {
+
+                        $check = mysqli_query($db, "SELECT * FROM tb_admin WHERE nama = '$username' ");
+                        if (mysqli_num_rows($check) > 0) {
+                            echo '<div style="background-color: red; padding: 10px; border-radius: 8px;color: white; margin-top: 10px;">username sudah digunakan</div>';
+                        } else {
+                            $hash_pass = password_hash($password1, PASSWORD_BCRYPT);
+
+                            mysqli_query($db, "INSERT INTO tb_admin
+                    (nama, password)
+                    VALUES
+                    ('$username', '$hash_pass')");
+                            header("location: login.php");
+                        }
+                    }
+                }
+                ?>
+
                 <div class="register">
                     <p>sudah punya akun? <a href="login.php">login</a></p>
                 </div>
-                <div style="border-bottom: 1px solid;"></div>
                 <div class="theme" style="margin-top: 5px;">
                     <div onclick="darkmode()" class="btn btn-primary"><i class="bi bi-moon"></i> darkmode</div>
                 </div>
@@ -116,18 +117,23 @@ if (isset($_POST['register'])) {
         .dark {
             background-color: #333;
         }
+
         .dark h1 {
             color: white;
         }
+
         .theme:hover {
             cursor: pointer;
         }
+
         .dark .theme {
             color: white;
         }
+
         .dark .register {
             color: white;
         }
+
         .dark .register a {
             color: white;
         }

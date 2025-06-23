@@ -45,12 +45,27 @@
 </head>
 
 <body>
+    <?php
+    require 'db.php';
+
+    if (isset($_POST['register.php'])) {
+            $username = htmlspecialchars(strtolower($_POST['username']));
+                $password = htmlspecialchars(strtolower($_POST['password']));
+                
+                $sql = "SELECT * FROM tb_admin WHERE username = '$username' AND password = '$password'";
+                $result = mysqli_query($db, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    header("Location: home.php");
+                }
+    }
+    ?>
     <form action="" method="post">
         <div class="container">
             <div class="wrapper">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="username">
+                    <input type="text" placeholder="username" name="username">
                 </div>
                 <div class="input-box">
                     <input type="password" placeholder="password" name="password">
