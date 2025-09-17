@@ -11,7 +11,7 @@
         <br>
         <input type="text" name="kelas" placeholder="kelas">
         <br>
-        <input type="text" name="nomor_absen" placeholder="nomor absen">
+        <input type="text" name="no_absen" placeholder="nomor absen">
         <br>
         <button type="submit" name="edit">edit</button>
     </form>
