@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="" method="post">
+        <input type="text" name="nama" placeholder="nama">
+        <br>
+        <input type="text" name="kelas" placeholder="kelas">
+        <br>
+        <input type="text" name="no_absen" placeholder="nomor absen">
+        <br>
+        <button type="submit" name="add">tambah</button>
+    </form>
 </body>
 </html>
