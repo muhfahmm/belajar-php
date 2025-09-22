@@ -1,3 +1,8 @@
+<?php
+require 'db.php';
+mysqli_query($db, "SELECT * FROM tb_siswa2");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
