@@ -6,15 +6,29 @@ if (!isset($_SESSION["login"])) {
 }
 
 require 'db.php';
+
 if (isset($_POST['add'])) {
-    if(add($_POST) > 0) {
+    // Ambil data dari tiap elemen form
+    $nama  = htmlspecialchars($_POST['nama']);
+    $kelas = htmlspecialchars($_POST['kelas']);
+    $nomor = htmlspecialchars($_POST['nomor']);
+
+    // Query INSERT DATA langsung tanpa function
+    $query = "INSERT INTO tb_siswa VALUES ('', '$nama', '$kelas', '$nomor')";
+    mysqli_query($db, $query);
+
+    // Cek apakah data berhasil ditambahkan
+    if (mysqli_affected_rows($db) > 0) {
         echo "<script>
-        alert ('data berhasil ditambah');
-        document.location.href='table.php';
-        </script>";
+                alert('Data berhasil ditambah');
+                document.location.href='table.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Gagal menambah data');
+              </script>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -22,21 +36,17 @@ if (isset($_POST['add'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tambah Data</title>
 </head>
 <body>
     <form action="" method="post">
-    <input type="text" name="nama" placeholder="nama" required>
-            <br>
-            <input type="text" name="kelas" placeholder="kelas" required>
-            <br>
-            <input type="text" name="nomor" placeholder="nomor absen" required>
-            <br>
-            <input type="text" name="gender" placeholder="gender" required>
-            <br>
-            <input type="text" name="email" placeholder="email" required>
-            <br>
-            <button type="submit" name="add">tambah</button>
+        <input type="text" name="nama" placeholder="nama" required>
+        <br>
+        <input type="text" name="kelas" placeholder="kelas" required>
+        <br>
+        <input type="text" name="nomor" placeholder="nomor absen" required>
+        <br>
+        <button type="submit" name="add">tambah</button>
     </form>
 </body>
 </html>
