@@ -19,7 +19,10 @@ if (isset($_POST['register'])) {
             $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
             // Simpan ke database
-            mysqli_query($db, "INSERT INTO tb_user (username, password) VALUES ('$username', '$password_hash')");
+            mysqli_query($db, "INSERT INTO tb_user
+            (username, password)
+            VALUES
+            ('$username', '$password_hash')");
             header("Location: login.php");
             exit;
         }
