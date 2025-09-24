@@ -1,7 +1,8 @@
 <?php
-require 'db.php';
-mysqli_query($db, "SELECT * FROM tb_siswa2");
+require 'functions.php';
 
+// query data untuk menampilkan data
+$siswa = query ("SELECT * FROM tb_siswa");
 ?>
 <!DOCTYPE html>
 <html lang="en">
