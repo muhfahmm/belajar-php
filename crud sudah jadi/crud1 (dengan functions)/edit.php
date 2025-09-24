@@ -5,7 +5,7 @@ if (!isset($_SESSION["login"])) {
     exit;
 }
 
-require 'db.php';
+require 'functions.php';
     // ambil data di url
     $id = $_GET ['id'];
 

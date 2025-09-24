@@ -5,7 +5,7 @@ if (!isset($_SESSION["login"])) {
     exit;
 }
 
-require 'db.php';
+require 'functions.php';
 if (isset($_POST['add'])) {
     if(add($_POST) > 0) {
         echo "<script>

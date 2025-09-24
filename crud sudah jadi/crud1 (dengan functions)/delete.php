@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-require 'db.php';
+require 'functions.php';
 $id = $_GET ['id'];
 
 if (delete($id) > 0) {

@@ -6,7 +6,7 @@ if (isset($_SESSION['login'])) {
     exit;
 }
 
-require 'db.php';
+require 'functions.php';
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];

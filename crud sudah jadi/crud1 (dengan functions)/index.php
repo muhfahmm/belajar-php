@@ -5,7 +5,7 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-require 'db.php';
+require 'functions.php';
 $siswa = table ("SELECT * FROM tb_siswa");
 if (isset($_POST['search'])) {
     $siswa = cari ($_POST['keyword']);
